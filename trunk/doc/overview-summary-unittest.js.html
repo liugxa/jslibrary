@@ -1,0 +1,523 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="unittest.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>unittest.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'unittest.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">// Copyright (c) 2005 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)</span>
+<span class="comment">//           (c) 2005 Jon Tirsen (http://www.tirsen.com)</span>
+<span class="comment">//           (c) 2005 Michael Schuerig (http://www.schuerig.de/michael/)</span>
+<span class="comment">//</span>
+<span class="comment">// See scriptaculous.js for full license.</span>
+
+<span class="comment">// experimental, Firefox-only</span>
+Event.simulateMouse = <span class="reserved">function</span>(element, eventName) {
+  var options = Object.extend({
+    pointerX: 0,
+    pointerY: 0,
+    buttons: 0
+  }, arguments[2] || {});
+  var oEvent = document.createEvent(<span class="literal">"MouseEvents"</span>);
+  oEvent.initMouseEvent(eventName, true, true, document.defaultView, 
+    options.buttons, options.pointerX, options.pointerY, options.pointerX, options.pointerY, 
+    false, false, false, false, 0, $(element));
+  
+  <span class="reserved">if</span>(<span class="reserved">this</span>.mark) Element.remove(<span class="reserved">this</span>.mark);
+  <span class="reserved">this</span>.mark = document.createElement(<span class="literal">'div'</span>);
+  <span class="reserved">this</span>.mark.appendChild(document.createTextNode(<span class="literal">" "</span>));
+  document.body.appendChild(<span class="reserved">this</span>.mark);
+  <span class="reserved">this</span>.mark.style.position = <span class="literal">'absolute'</span>;
+  <span class="reserved">this</span>.mark.style.top = options.pointerY + <span class="literal">"px"</span>;
+  <span class="reserved">this</span>.mark.style.left = options.pointerX + <span class="literal">"px"</span>;
+  <span class="reserved">this</span>.mark.style.width = <span class="literal">"5px"</span>;
+  <span class="reserved">this</span>.mark.style.height = <span class="literal">"5px;"</span>;
+  <span class="reserved">this</span>.mark.style.borderTop = <span class="literal">"1px solid red;"</span>
+  <span class="reserved">this</span>.mark.style.borderLeft = <span class="literal">"1px solid red;"</span>
+  
+  <span class="reserved">if</span>(<span class="reserved">this</span>.step)
+    alert(<span class="literal">'['</span>+new Date().getTime().toString()+<span class="literal">'] '</span>+eventName+<span class="literal">'/'</span>+Test.Unit.inspect(options));
+  
+  $(element).dispatchEvent(oEvent);
+};
+
+<span class="comment">// Note: Due to a fix in Firefox 1.0.5/6 that probably fixed "too much", this doesn't work in 1.0.6 or DP2.</span>
+<span class="comment">// You need to downgrade to 1.0.4 for now to get this working</span>
+<span class="comment">// See https://bugzilla.mozilla.org/show_bug.cgi?id=289940 for the fix that fixed too much</span>
+Event.simulateKey = <span class="reserved">function</span>(element, eventName) {
+  var options = Object.extend({
+    ctrlKey: false,
+    altKey: false,
+    shiftKey: false,
+    metaKey: false,
+    keyCode: 0,
+    charCode: 0
+  }, arguments[2] || {});
+
+  var oEvent = document.createEvent(<span class="literal">"KeyEvents"</span>);
+  oEvent.initKeyEvent(eventName, true, true, window, 
+    options.ctrlKey, options.altKey, options.shiftKey, options.metaKey,
+    options.keyCode, options.charCode );
+  $(element).dispatchEvent(oEvent);
+};
+
+Event.simulateKeys = <span class="reserved">function</span>(element, command) {
+  <span class="reserved">for</span>(var i=0; i&lt;command.length; i++) {
+    Event.simulateKey(element,<span class="literal">'keypress'</span>,{charCode:command.charCodeAt(i)});
+  }
+};
+
+var Test = {}
+Test.Unit = {};
+
+<span class="comment">// security exception workaround</span>
+Test.Unit.inspect = <span class="reserved">function</span>(obj) {
+  var info = [];
+
+  <span class="reserved">if</span>(typeof obj==<span class="literal">"string"</span> || 
+     typeof obj==<span class="literal">"number"</span>) {
+    <span class="reserved">return</span> obj;
+  } <span class="reserved">else</span> {
+    <span class="reserved">for</span>(property in obj)
+      <span class="reserved">if</span>(typeof obj[property]!=<span class="literal">"function"</span>)
+        info.push(property + <span class="literal">' =&gt; '</span> + 
+          (typeof obj[property] == <span class="literal">"string"</span> ?
+            <span class="literal">'"'</span> + obj[property] + <span class="literal">'"'</span> :
+            obj[property]));
+  }
+
+  <span class="reserved">return</span> (<span class="literal">"'"</span> + obj + <span class="literal">"' #"</span> + typeof obj + 
+    <span class="literal">": {"</span> + info.join(<span class="literal">", "</span>) + <span class="literal">"}"</span>);
+}
+
+Test.Unit.Logger = Class.create();
+Test.Unit.Logger.<span class="reserved">prototype</span> = {
+  initialize: <span class="reserved">function</span>(log) {
+    <span class="reserved">this</span>.log = $(log);
+    <span class="reserved">if</span> (<span class="reserved">this</span>.log) {
+      <span class="reserved">this</span>._createLogTable();
+    }
+  },
+  start: <span class="reserved">function</span>(testName) {
+    <span class="reserved">if</span> (!<span class="reserved">this</span>.log) <span class="reserved">return</span>;
+    <span class="reserved">this</span>.testName = testName;
+    <span class="reserved">this</span>.lastLogLine = document.createElement(<span class="literal">'tr'</span>);
+    <span class="reserved">this</span>.statusCell = document.createElement(<span class="literal">'td'</span>);
+    <span class="reserved">this</span>.nameCell = document.createElement(<span class="literal">'td'</span>);
+    <span class="reserved">this</span>.nameCell.appendChild(document.createTextNode(testName));
+    <span class="reserved">this</span>.messageCell = document.createElement(<span class="literal">'td'</span>);
+    <span class="reserved">this</span>.lastLogLine.appendChild(<span class="reserved">this</span>.statusCell);
+    <span class="reserved">this</span>.lastLogLine.appendChild(<span class="reserved">this</span>.nameCell);
+    <span class="reserved">this</span>.lastLogLine.appendChild(<span class="reserved">this</span>.messageCell);
+    <span class="reserved">this</span>.loglines.appendChild(<span class="reserved">this</span>.lastLogLine);
+  },
+  finish: <span class="reserved">function</span>(status, summary) {
+    <span class="reserved">if</span> (!<span class="reserved">this</span>.log) <span class="reserved">return</span>;
+    <span class="reserved">this</span>.lastLogLine.className = status;
+    <span class="reserved">this</span>.statusCell.innerHTML = status;
+    <span class="reserved">this</span>.messageCell.innerHTML = <span class="reserved">this</span>._toHTML(summary);
+  },
+  message: <span class="reserved">function</span>(message) {
+    <span class="reserved">if</span> (!<span class="reserved">this</span>.log) <span class="reserved">return</span>;
+    <span class="reserved">this</span>.messageCell.innerHTML = <span class="reserved">this</span>._toHTML(message);
+  },
+  summary: <span class="reserved">function</span>(summary) {
+    <span class="reserved">if</span> (!<span class="reserved">this</span>.log) <span class="reserved">return</span>;
+    <span class="reserved">this</span>.logsummary.innerHTML = <span class="reserved">this</span>._toHTML(summary);
+  },
+  _createLogTable: <span class="reserved">function</span>() {
+    <span class="reserved">this</span>.log.innerHTML =
+    <span class="literal">'&lt;div id="logsummary"&gt;&lt;/div&gt;'</span> +
+    <span class="literal">'&lt;table id="logtable"&gt;'</span> +
+    <span class="literal">'&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Test&lt;/th&gt;&lt;th&gt;Message&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;'</span> +
+    <span class="literal">'&lt;tbody id="loglines"&gt;&lt;/tbody&gt;'</span> +
+    <span class="literal">'&lt;/table&gt;'</span>;
+    <span class="reserved">this</span>.logsummary = $(<span class="literal">'logsummary'</span>)
+    <span class="reserved">this</span>.loglines = $(<span class="literal">'loglines'</span>);
+  },
+  _toHTML: <span class="reserved">function</span>(txt) {
+    <span class="reserved">return</span> txt.escapeHTML().replace(/\n/g,<span class="literal">"&lt;br/&gt;"</span>);
+  }
+}
+
+Test.Unit.Runner = Class.create();
+Test.Unit.Runner.<span class="reserved">prototype</span> = {
+  initialize: <span class="reserved">function</span>(testcases) {
+    <span class="reserved">this</span>.options = Object.extend({
+      testLog: <span class="literal">'testlog'</span>
+    }, arguments[1] || {});
+    <span class="reserved">this</span>.options.resultsURL = <span class="reserved">this</span>.parseResultsURLQueryParameter();
+	<span class="reserved">if</span> (<span class="reserved">this</span>.options.testLog) {
+      <span class="reserved">this</span>.options.testLog = $(<span class="reserved">this</span>.options.testLog) || null;
+    }
+    <span class="reserved">if</span>(<span class="reserved">this</span>.options.tests) {
+      <span class="reserved">this</span>.tests = [];
+      <span class="reserved">for</span>(var i = 0; i &lt; <span class="reserved">this</span>.options.tests.length; i++) {
+        <span class="reserved">if</span>(/^test/.test(<span class="reserved">this</span>.options.tests[i])) {
+          <span class="reserved">this</span>.tests.push(new Test.Unit.Testcase(<span class="reserved">this</span>.options.tests[i], testcases[<span class="reserved">this</span>.options.tests[i]], testcases[<span class="literal">"setup"</span>], testcases[<span class="literal">"teardown"</span>]));
+        }
+      }
+    } <span class="reserved">else</span> {
+      <span class="reserved">if</span> (<span class="reserved">this</span>.options.test) {
+        <span class="reserved">this</span>.tests = [new Test.Unit.Testcase(<span class="reserved">this</span>.options.test, testcases[<span class="reserved">this</span>.options.test], testcases[<span class="literal">"setup"</span>], testcases[<span class="literal">"teardown"</span>])];
+      } <span class="reserved">else</span> {
+        <span class="reserved">this</span>.tests = [];
+        <span class="reserved">for</span>(var testcase in testcases) {
+          <span class="reserved">if</span>(/^test/.test(testcase)) {
+            <span class="reserved">this</span>.tests.push(new Test.Unit.Testcase(testcase, testcases[testcase], testcases[<span class="literal">"setup"</span>], testcases[<span class="literal">"teardown"</span>]));
+          }
+        }
+      }
+    }
+    <span class="reserved">this</span>.currentTest = 0;
+    <span class="reserved">this</span>.logger = new Test.Unit.Logger(<span class="reserved">this</span>.options.testLog);
+    setTimeout(<span class="reserved">this</span>.runTests.bind(<span class="reserved">this</span>), 1000);
+  },
+  parseResultsURLQueryParameter: <span class="reserved">function</span>() {
+    <span class="reserved">return</span> window.location.search.parseQuery()[<span class="literal">"resultsURL"</span>];
+  },
+  <span class="comment">// Returns:</span>
+  <span class="comment">//  "ERROR" if there was an error,</span>
+  <span class="comment">//  "FAILURE" if there was a failure, or</span>
+  <span class="comment">//  "SUCCESS" if there was neither</span>
+  getResult: <span class="reserved">function</span>() {
+    var hasFailure = false;
+    <span class="reserved">for</span>(var i=0;i&lt;<span class="reserved">this</span>.tests.length;i++) {
+      <span class="reserved">if</span> (<span class="reserved">this</span>.tests[i].errors &gt; 0) {
+        <span class="reserved">return</span> <span class="literal">"ERROR"</span>;
+      }
+      <span class="reserved">if</span> (<span class="reserved">this</span>.tests[i].failures &gt; 0) {
+        hasFailure = true;
+      }
+    }
+    <span class="reserved">if</span> (hasFailure) {
+      <span class="reserved">return</span> <span class="literal">"FAILURE"</span>;
+    } <span class="reserved">else</span> {
+      <span class="reserved">return</span> <span class="literal">"SUCCESS"</span>;
+    }
+  },
+  postResults: <span class="reserved">function</span>() {
+    <span class="reserved">if</span> (<span class="reserved">this</span>.options.resultsURL) {
+      new Ajax.Request(<span class="reserved">this</span>.options.resultsURL, 
+        { method: <span class="literal">'get'</span>, parameters: <span class="literal">'result='</span> + <span class="reserved">this</span>.getResult(), asynchronous: false });
+    }
+  },
+  runTests: <span class="reserved">function</span>() {
+    var test = <span class="reserved">this</span>.tests[<span class="reserved">this</span>.currentTest];
+    <span class="reserved">if</span> (!test) {
+      <span class="comment">// finished!</span>
+      <span class="reserved">this</span>.postResults();
+      <span class="reserved">this</span>.logger.summary(<span class="reserved">this</span>.summary());
+      <span class="reserved">return</span>;
+    }
+    <span class="reserved">if</span>(!test.isWaiting) {
+      <span class="reserved">this</span>.logger.start(test.name);
+    }
+    test.run();
+    <span class="reserved">if</span>(test.isWaiting) {
+      <span class="reserved">this</span>.logger.message(<span class="literal">"Waiting for "</span> + test.timeToWait + <span class="literal">"ms"</span>);
+      setTimeout(<span class="reserved">this</span>.runTests.bind(<span class="reserved">this</span>), test.timeToWait || 1000);
+    } <span class="reserved">else</span> {
+      <span class="reserved">this</span>.logger.finish(test.status(), test.summary());
+      <span class="reserved">this</span>.currentTest++;
+      <span class="comment">// tail recursive, hopefully the browser will skip the stackframe</span>
+      <span class="reserved">this</span>.runTests();
+    }
+  },
+  summary: <span class="reserved">function</span>() {
+    var assertions = 0;
+    var failures = 0;
+    var errors = 0;
+    var messages = [];
+    <span class="reserved">for</span>(var i=0;i&lt;<span class="reserved">this</span>.tests.length;i++) {
+      assertions +=   <span class="reserved">this</span>.tests[i].assertions;
+      failures   +=   <span class="reserved">this</span>.tests[i].failures;
+      errors     +=   <span class="reserved">this</span>.tests[i].errors;
+    }
+    <span class="reserved">return</span> (
+      <span class="reserved">this</span>.tests.length + <span class="literal">" tests, "</span> + 
+      assertions + <span class="literal">" assertions, "</span> + 
+      failures   + <span class="literal">" failures, "</span> +
+      errors     + <span class="literal">" errors"</span>);
+  }
+}
+
+Test.Unit.Assertions = Class.create();
+Test.Unit.Assertions.<span class="reserved">prototype</span> = {
+  initialize: <span class="reserved">function</span>() {
+    <span class="reserved">this</span>.assertions = 0;
+    <span class="reserved">this</span>.failures   = 0;
+    <span class="reserved">this</span>.errors     = 0;
+    <span class="reserved">this</span>.messages   = [];
+  },
+  summary: <span class="reserved">function</span>() {
+    <span class="reserved">return</span> (
+      <span class="reserved">this</span>.assertions + <span class="literal">" assertions, "</span> + 
+      <span class="reserved">this</span>.failures   + <span class="literal">" failures, "</span> +
+      <span class="reserved">this</span>.errors     + <span class="literal">" errors"</span> + <span class="literal">"\n "</span> +
+      <span class="reserved">this</span>.messages.join(<span class="literal">"\n"</span>));
+  },
+  pass: <span class="reserved">function</span>() {
+    <span class="reserved">this</span>.assertions++;
+  },
+  fail: <span class="reserved">function</span>(message) {
+    <span class="reserved">this</span>.failures++;
+    <span class="reserved">this</span>.messages.push(<span class="literal">"Failure: "</span> + message);
+  },
+  error: <span class="reserved">function</span>(error) {
+    <span class="reserved">this</span>.errors++;
+	<span class="reserved">if</span>(error instanceof Error){
+		<span class="reserved">this</span>.messages.push(error.name + <span class="literal">": "</span>+ error.message + <span class="literal">"("</span> + Test.Unit.inspect(error) +<span class="literal">")"</span>);
+		throw error;
+	}<span class="reserved">else</span>{
+		<span class="reserved">this</span>.messages.push(error.message + <span class="literal">"("</span> + error +<span class="literal">")"</span>);
+	}
+    <span class="comment">//this.messages.push(error.name + ": "+ error.message + "(" + Test.Unit.inspect(error) +")");</span>
+  },
+  status: <span class="reserved">function</span>() {
+    <span class="reserved">if</span> (<span class="reserved">this</span>.failures &gt; 0) <span class="reserved">return</span> <span class="literal">'failed'</span>;
+    <span class="reserved">if</span> (<span class="reserved">this</span>.errors &gt; 0) <span class="reserved">return</span> <span class="literal">'error'</span>;
+    <span class="reserved">return</span> <span class="literal">'passed'</span>;
+  },
+  assert: <span class="reserved">function</span>(expression) {
+    var message = arguments[1] || <span class="literal">'assert: got "'</span> + Test.Unit.inspect(expression) + <span class="literal">'"'</span>;
+    try { expression ? <span class="reserved">this</span>.pass() : 
+      <span class="reserved">this</span>.fail(message); }
+    catch(e) { <span class="reserved">this</span>.error(e); }
+  },
+  assertEqual: <span class="reserved">function</span>(expected, actual) {
+    var message = arguments[2] || <span class="literal">"assertEqual"</span>;
+    try { (expected == actual) ? <span class="reserved">this</span>.pass() :
+      <span class="reserved">this</span>.fail(message + <span class="literal">': expected "'</span> + Test.Unit.inspect(expected) + 
+        <span class="literal">'", actual "'</span> + Test.Unit.inspect(actual) + <span class="literal">'"'</span>); }
+    catch(e) { <span class="reserved">this</span>.error(e); }
+  },
+  assertNotEqual: <span class="reserved">function</span>(expected, actual) {
+    var message = arguments[2] || <span class="literal">"assertNotEqual"</span>;
+    try { (expected != actual) ? <span class="reserved">this</span>.pass() : 
+      <span class="reserved">this</span>.fail(message + <span class="literal">': got "'</span> + Test.Unit.inspect(actual) + <span class="literal">'"'</span>); }
+    catch(e) { <span class="reserved">this</span>.error(e); }
+  },
+  assertNull: <span class="reserved">function</span>(obj) {
+    var message = arguments[1] || <span class="literal">'assertNull'</span>
+    try { (obj==null) ? <span class="reserved">this</span>.pass() : 
+      <span class="reserved">this</span>.fail(message + <span class="literal">': got "'</span> + Test.Unit.inspect(obj) + <span class="literal">'"'</span>); }
+    catch(e) { <span class="reserved">this</span>.error(e); }
+  },
+  assertHidden: <span class="reserved">function</span>(element) {
+    var message = arguments[1] || <span class="literal">'assertHidden'</span>;
+    <span class="reserved">this</span>.assertEqual(<span class="literal">"none"</span>, element.style.display, message);
+  },
+  assertNotNull: <span class="reserved">function</span>(object) {
+    var message = arguments[1] || <span class="literal">'assertNotNull'</span>;
+    <span class="reserved">this</span>.assert(object != null, message);
+  },
+  assertInstanceOf: <span class="reserved">function</span>(expected, actual) {
+    var message = arguments[2] || <span class="literal">'assertInstanceOf'</span>;
+    try { 
+      (actual instanceof expected) ? <span class="reserved">this</span>.pass() : 
+      <span class="reserved">this</span>.fail(message + <span class="literal">": object was not an instance of the expected type"</span>); }
+    catch(e) { <span class="reserved">this</span>.error(e); } 
+  },
+  assertNotInstanceOf: <span class="reserved">function</span>(expected, actual) {
+    var message = arguments[2] || <span class="literal">'assertNotInstanceOf'</span>;
+    try { 
+      !(actual instanceof expected) ? <span class="reserved">this</span>.pass() : 
+      <span class="reserved">this</span>.fail(message + <span class="literal">": object was an instance of the not expected type"</span>); }
+    catch(e) { <span class="reserved">this</span>.error(e); } 
+  },
+  _isVisible: <span class="reserved">function</span>(element) {
+    element = $(element);
+    <span class="reserved">if</span>(!element.parentNode) <span class="reserved">return</span> true;
+    <span class="reserved">this</span>.assertNotNull(element);
+    <span class="reserved">if</span>(element.style &amp;&amp; Element.getStyle(element, <span class="literal">'display'</span>) == <span class="literal">'none'</span>)
+      <span class="reserved">return</span> false;
+    
+    <span class="reserved">return</span> <span class="reserved">this</span>._isVisible(element.parentNode);
+  },
+  assertNotVisible: <span class="reserved">function</span>(element) {
+    <span class="reserved">this</span>.assert(!<span class="reserved">this</span>._isVisible(element), Test.Unit.inspect(element) + <span class="literal">" was not hidden and didn't have a hidden parent either. "</span> + (<span class="literal">""</span> || arguments[1]));
+  },
+  assertVisible: <span class="reserved">function</span>(element) {
+    <span class="reserved">this</span>.assert(<span class="reserved">this</span>._isVisible(element), Test.Unit.inspect(element) + <span class="literal">" was not visible. "</span> + (<span class="literal">""</span> || arguments[1]));
+  }
+}
+
+Test.Unit.Testcase = Class.create();
+Object.extend(Object.extend(Test.Unit.Testcase.<span class="reserved">prototype</span>, Test.Unit.Assertions.<span class="reserved">prototype</span>), {
+  initialize: <span class="reserved">function</span>(name, test, setup, teardown) {
+    Test.Unit.Assertions.<span class="reserved">prototype</span>.initialize.bind(<span class="reserved">this</span>)();
+    <span class="reserved">this</span>.name           = name;
+    <span class="reserved">this</span>.test           = test || <span class="reserved">function</span>() {};
+    <span class="reserved">this</span>.setup          = setup || <span class="reserved">function</span>() {};
+    <span class="reserved">this</span>.teardown       = teardown || <span class="reserved">function</span>() {};
+    <span class="reserved">this</span>.isWaiting      = false;
+    <span class="reserved">this</span>.timeToWait     = 1000;
+  },
+  wait: <span class="reserved">function</span>(time, nextPart) {
+    <span class="reserved">this</span>.isWaiting = true;
+    <span class="reserved">this</span>.test = nextPart;
+    <span class="reserved">this</span>.timeToWait = time;
+  },
+  run: <span class="reserved">function</span>() {
+    try {
+      try {
+        <span class="reserved">if</span> (!<span class="reserved">this</span>.isWaiting) <span class="reserved">this</span>.setup.bind(<span class="reserved">this</span>)();
+        <span class="reserved">this</span>.isWaiting = false;
+        <span class="reserved">this</span>.test.bind(<span class="reserved">this</span>)();
+      } finally {
+        <span class="reserved">if</span>(!<span class="reserved">this</span>.isWaiting) {
+          <span class="reserved">this</span>.teardown.bind(<span class="reserved">this</span>)();
+        }
+      }
+    }
+    catch(e) { <span class="reserved">this</span>.error(e); }
+  }
+});
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Nov  6 15:23:56 2008</div>
+</body>
+</html>

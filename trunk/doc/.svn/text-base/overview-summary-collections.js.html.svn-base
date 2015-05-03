@@ -1,0 +1,488 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="collections.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>collections.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'collections.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="ActiveRecord.html">ActiveRecord</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Iterator.html">Iterator</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="List.html">List</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Map.html">Map</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+	<a name="method_summary"><!-- --></a>
+	<table border="1" cellpadding="3" cellspacing="0" width="100%">
+		<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+			<td colspan=2>
+				<font size="+2">
+					<b>Method Summary</b>
+				</font>
+			</td>
+		</tr>
+	
+		
+		   <tr bgcolor="white" class="TableRowColor">
+		      <td align="right" valign="top" width="1%">
+			 <font size="-1">
+			    <code>static&nbsp;void</code>
+			 </font>
+		      </td>
+		      <td>
+			 <code>
+			    <b>
+			       <a href="GLOBALS.html#!s!Set">Set</a></b>()
+			 </code>
+			 <br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			 
+		      </td>
+		   </tr>
+		
+	
+	</table>
+    <p>
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/**
+* java-like Map
+* <span class="attrib">@warning</span>: only support simple type key,String best!;
+* <span class="attrib">@constructor</span>
+*/</span>
+<span class="reserved">function</span> ActiveRecord(){
+
+	<span class="reserved">this</span>.map = new Map();
+
+	<span class="comment">//synchronization?my god! it not db!! forgot it!</span>
+	<span class="reserved">this</span>.sequence = -1;
+
+	<span class="comment">/**
+	* record the data and it will be attached a new attribute("id")
+	* on it.
+	* <span class="attrib">@param</span> {Object} the object will be saved
+    * <span class="attrib">@type</span> Object
+	*/</span>
+	<span class="reserved">this</span>.save = <span class="reserved">function</span>(object){
+		<span class="reserved">this</span>.sequence ++;
+		<span class="reserved">this</span>.map.put(<span class="reserved">this</span>.sequence , object);
+		<span class="reserved">if</span>(!!object.id)
+			object.setId(<span class="reserved">this</span>.sequence);
+		
+		<span class="reserved">return</span> object;
+	}
+
+	<span class="comment">/**
+	* Remove the object.
+	* <span class="attrib">@type</span> void
+	*/</span>
+	<span class="reserved">this</span>.remove = <span class="reserved">function</span>(i){
+		<span class="reserved">this</span>.map.remove(i);
+	}
+
+	<span class="comment">/**
+	* Load the data object by its id
+	* <span class="attrib">@param</span>{int} id
+	* <span class="attrib">@type</span> Object
+	*/</span>
+	<span class="reserved">this</span>.load = <span class="reserved">function</span>(i){
+		<span class="reserved">return</span> <span class="reserved">this</span>.map.get(i);
+	}
+
+	<span class="comment">/**
+	* Update the object information
+	* <span class="attrib">@param</span> {Object}
+	* <span class="attrib">@type</span> void
+	*/</span>
+	<span class="reserved">this</span>.update = <span class="reserved">function</span>(i,updatedObj){
+		<span class="reserved">this</span>.remove(i);
+		<span class="reserved">this</span>.map.put(i,updatedObj);		
+	}
+
+	<span class="comment">/**
+	* Get all of the objects information
+	* <span class="attrib">@type</span> String
+	*/</span>
+	<span class="reserved">this</span>.toString = <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="reserved">this</span>.map.toString();
+	}
+}
+
+<span class="comment">/**
+* <span class="attrib">@title</span>: java-like Map
+* <span class="attrib">@warning</span>: only support simple type key,String best!;
+*/</span>
+<span class="reserved">function</span> Map() { 
+<span class="reserved">this</span>.pairs = new List();
+<span class="reserved">this</span>.get = get;
+<span class="reserved">this</span>.put = put;
+<span class="reserved">this</span>.remove = remove;
+<span class="reserved">this</span>.size = size;
+<span class="reserved">this</span>.isEmpty = isEmpty;
+<span class="reserved">this</span>.keySet = keySet;
+<span class="reserved">this</span>.containsKey = containsKey;
+<span class="reserved">this</span>.toString = toString;
+
+<span class="reserved">function</span> Item(key, value){
+	<span class="reserved">this</span>.key = key;
+	<span class="reserved">this</span>.value = value;
+	<span class="reserved">this</span>.toString = <span class="reserved">function</span>(){
+		<span class="reserved">return</span> <span class="literal">"[key="</span> + <span class="reserved">this</span>.key + <span class="literal">" | value="</span> + <span class="reserved">this</span>.value + <span class="literal">"]"</span>;
+	}	
+}
+
+<span class="reserved">function</span> put(key, value){
+	<span class="reserved">for</span>(var iter = <span class="reserved">this</span>.pairs.iterator();iter.hasNext();){
+		var item = iter.next();
+		<span class="reserved">if</span>(item.key === key){
+			item.value = value;
+			<span class="reserved">return</span>;
+		}
+	}
+
+	<span class="reserved">this</span>.pairs.add(new Item(key,value));
+}
+
+<span class="reserved">function</span> get(key){
+	<span class="reserved">for</span>(var iter = <span class="reserved">this</span>.pairs.iterator();iter.hasNext();){
+		var item = iter.next();
+		<span class="reserved">if</span>(item.key === key){
+			<span class="reserved">return</span> item.value;
+		}
+	}
+	<span class="reserved">return</span> null;
+}
+
+<span class="reserved">function</span> remove(key){
+	<span class="reserved">for</span>(var iter = <span class="reserved">this</span>.pairs.iterator();iter.hasNext();){
+		var item = iter.next();
+		<span class="reserved">if</span>(item.key === key){
+			iter.remove();
+		}
+	}
+}
+
+<span class="reserved">function</span> size(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.pairs.size();
+}
+
+<span class="reserved">function</span> isEmpty(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.pairs.size() &lt;= 0;
+}
+<span class="reserved">function</span> keySet(){
+	var keys = new List();
+	<span class="reserved">for</span>(var iter = <span class="reserved">this</span>.pairs.iterator();iter.hasNext();){
+		var item = iter.next();
+		keys.add(item.key);
+	}
+	<span class="reserved">return</span> keys;
+}
+<span class="reserved">function</span> containsKey(key){
+	<span class="reserved">for</span>(var iter = <span class="reserved">this</span>.pairs.iterator();iter.hasNext();){
+		var item = iter.next();
+		<span class="reserved">if</span>(item.key === key){
+			<span class="reserved">return</span> true;
+		}
+	}
+	<span class="reserved">return</span> false;
+}
+<span class="reserved">function</span> toString(){
+	var str = <span class="literal">""</span>;
+	<span class="reserved">for</span>(var iter = <span class="reserved">this</span>.pairs.iterator();iter.hasNext();){
+		str = str + iter.next().toString();
+	}
+	<span class="reserved">return</span> str;
+}
+}
+<span class="comment">/**
+* <span class="attrib">@title</span>: java-like List
+*/</span>
+<span class="reserved">function</span> List(){
+<span class="reserved">this</span>.innerArray = new Array();
+<span class="reserved">this</span>.add = add;
+<span class="reserved">this</span>.get = get;
+<span class="reserved">this</span>.remove = remove;
+<span class="reserved">this</span>.size = size;
+<span class="reserved">this</span>.isEmpty = isEmpty;
+<span class="reserved">this</span>.iterator = iterator;
+<span class="reserved">this</span>.contains = contains;
+
+<span class="reserved">function</span> add(value){
+	<span class="reserved">this</span>.innerArray[<span class="reserved">this</span>.innerArray.length] = value;
+}
+<span class="reserved">function</span> get(i){
+	<span class="reserved">if</span> (i&lt; 0 || i&gt;= <span class="reserved">this</span>.innerArray.length){
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">return</span> <span class="reserved">this</span>.innerArray[i];
+}
+<span class="reserved">function</span> remove(i){
+	<span class="reserved">if</span> (i&lt; 0 || i&gt;= <span class="reserved">this</span>.innerArray.length){
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">this</span>.innerArray.splice(i,1);
+}
+<span class="reserved">function</span> size(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.innerArray.length;
+}
+<span class="reserved">function</span> isEmpty(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.innerArray.length &lt;= 0;
+}
+<span class="reserved">function</span> iterator(){
+	<span class="reserved">return</span> new Iterator(<span class="reserved">this</span>);
+}
+<span class="reserved">function</span> contains(object){
+	<span class="reserved">for</span> (var i = 0; i &lt; <span class="reserved">this</span>.pairs.length; i++){
+		<span class="reserved">if</span> ( <span class="reserved">this</span>.innerArray[i] === object ){
+			<span class="reserved">return</span> true;
+		}
+	}
+	<span class="reserved">return</span> false;
+}
+}
+<span class="comment">/**
+* <span class="attrib">@title</span>: java-like Set
+* <span class="attrib">@warning</span>: only support simple type value,String best!;
+*/</span>
+<span class="reserved">function</span> Set(){
+<span class="reserved">this</span>.innerArray = new Array();
+<span class="reserved">this</span>.add = add;
+<span class="reserved">this</span>.get = get;
+<span class="reserved">this</span>.remove = remove;
+<span class="reserved">this</span>.size = size;
+<span class="reserved">this</span>.isEmpty = isEmpty;
+<span class="reserved">this</span>.iterator = iterator;
+<span class="reserved">this</span>.contains = contains;
+
+<span class="reserved">function</span> add(value){
+	<span class="reserved">for</span> (var i = 0; i &lt; <span class="reserved">this</span>.pairs.length; i++){
+		<span class="reserved">if</span> ( <span class="reserved">this</span>.innerArray[i] === value ){
+			<span class="reserved">return</span>;
+		}
+	}
+	<span class="reserved">this</span>.innerArray[<span class="reserved">this</span>.innerArray.length] = value;
+}
+<span class="reserved">function</span> get(i){
+	<span class="reserved">if</span> (i&lt; 0 || i&gt;= <span class="reserved">this</span>.innerArray.length){
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">return</span> <span class="reserved">this</span>.innerArray[i];
+}
+<span class="reserved">function</span> remove(i){
+	<span class="reserved">if</span> (i&lt; 0 || i&gt;= <span class="reserved">this</span>.innerArray.length){
+		<span class="reserved">return</span>;
+	}
+	<span class="reserved">this</span>.innerArray.splice(i,1);
+}
+<span class="reserved">function</span> size(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.innerArray.length;
+}
+<span class="reserved">function</span> isEmpty(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.innerArray.length &lt;= 0;
+}
+<span class="reserved">function</span> iterator(){
+	<span class="reserved">return</span> new Iterator(<span class="reserved">this</span>);
+}
+<span class="reserved">function</span> contains(object){
+	<span class="reserved">for</span> (var i = 0; i &lt; <span class="reserved">this</span>.pairs.length; i++){
+		<span class="reserved">if</span> ( <span class="reserved">this</span>.innerArray[i] === object ){
+			<span class="reserved">return</span> true;
+		}
+	}
+	<span class="reserved">return</span> false;
+}
+}
+<span class="comment">/**
+* <span class="attrib">@title</span>: java-like Iterator
+*/</span>
+<span class="reserved">function</span> Iterator(list){
+<span class="reserved">this</span>.list = list;
+<span class="reserved">this</span>.cursor = 0;
+<span class="reserved">this</span>.hasNext = hasNext;
+<span class="reserved">this</span>.next = next;
+<span class="reserved">this</span>.remove = remove;
+
+<span class="reserved">function</span> hasNext(){
+	<span class="reserved">return</span> <span class="reserved">this</span>.cursor != <span class="reserved">this</span>.list.size();
+}
+<span class="reserved">function</span> next(){
+	var result = <span class="reserved">this</span>.list.get(<span class="reserved">this</span>.cursor);
+	<span class="reserved">this</span>.cursor++;
+	<span class="reserved">return</span> result;
+}
+<span class="reserved">function</span> remove(){
+	<span class="reserved">this</span>.cursor--;
+	<span class="reserved">this</span>.list.remove(<span class="reserved">this</span>.cursor);
+}
+} 
+</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Nov  6 15:23:56 2008</div>
+</body>
+</html>

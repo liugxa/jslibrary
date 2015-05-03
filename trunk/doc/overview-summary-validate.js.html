@@ -1,0 +1,509 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Frameset//EN""http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<title>
+ Overview
+</title>
+<link rel ="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script>
+function asd() {
+	
+		parent.document.title="validate.js Overview";
+	
+}
+</script>
+</head>
+<body bgcolor="white" onload="asd();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> 	<font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top">
+<em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<center>
+	
+	   <h2>validate.js</h2>
+	
+</center>
+
+	
+
+
+<h4>Summary</h4>
+<p>
+	
+		No overview generated for 'validate.js'<BR/><BR/>
+	
+</p>
+
+<hr>
+
+
+    <table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+    <td colspan=2><font size="+2">
+    
+        <b>Class Summary</b>
+    
+    </font></td>
+    </tr>
+    
+    <tr bgcolor="white" class="TableRowColor">
+    <td width="15%"><b><a href="Validate.html">Validate</a></b></td>
+    <td>&nbsp;</td>
+    </tr>
+    
+    </table>
+    <hr/> 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<!-- ========== END METHOD SUMMARY =========== -->
+
+
+        <pre class="sourceview"><span class="comment">/**
+* Validate object.
+* <span class="attrib">@constructor</span>
+*/</span>
+<span class="reserved">function</span> Validate(){
+
+	<span class="comment">/**
+	* Validate the data contain the special character, return true.
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@param</span> {String} characters
+	* <span class="attrib">@param</span> {String} sensitive
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.hasValidChars = <span class="reserved">function</span>(s, characters, caseSensitive){
+		<span class="reserved">function</span> escapeSpecials(s){
+			<span class="reserved">return</span> s.replace(new RegExp(<span class="literal">"([\\\\-])"</span>, <span class="literal">"g"</span>), <span class="literal">"\\$1"</span>);
+		}
+		<span class="reserved">return</span> new RegExp(<span class="literal">"^["</span> + escapeSpecials(characters) + <span class="literal">"]+$"</span>,(!caseSensitive ? <span class="literal">"i"</span> : <span class="literal">""</span>)).test(s);
+	}
+
+	<span class="comment">/**
+	* Validate the data is ip or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isSimpleIP = <span class="reserved">function</span>(ip){
+		ipRegExp = /^(([0-2]*[0-9]+[0-9]+)\.([0-2]*[0-9]+[0-9]+)\.([0-2]*[0-9]+[0-9]+)\.([0-2]*[0-9]+[0-9]+))$/
+		<span class="reserved">return</span> ipRegExp.test(ip);
+	}
+
+	<span class="comment">/**
+	* Validate the data is alpha letter or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isAlphaLatin = <span class="reserved">function</span>(string){
+		alphaRegExp = /^[0-9a-z]+$/i
+		<span class="reserved">return</span> alphaRegExp.test(string);
+	}
+
+	<span class="comment">/**
+	* Validate the data is non empty or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isNotEmpty = <span class="reserved">function</span> (string){
+		<span class="reserved">return</span> /\S/.test(string);
+	}
+
+	<span class="comment">/**
+	* Validate the data is empty or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isEmpty = <span class="reserved">function</span>(s){
+		<span class="reserved">return</span> !/\S/.test(s);
+	}
+
+	<span class="comment">/**
+	* Validate the data is integer or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isInteger = <span class="reserved">function</span>(n){
+		numberExp = /^-?\d+$/
+		<span class="reserved">return</span> numberExp.test(n);
+	}
+
+	<span class="comment">/**
+	* Validate the data is positive integer or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isPositiveInteger = <span class="reserved">function</span>(n){
+		regex = /^[0-9]*[1-9][0-9]*$/
+		<span class="reserved">return</span> regex.test(n);
+	}
+
+	<span class="comment">/**
+	* Validate the data is non positive integer or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isNonPositiveInteger = <span class="reserved">function</span>(n){
+		regex = /^((-\d+)|(0+))$/
+		<span class="reserved">return</span> regex.test(n);
+	}
+
+	<span class="comment">/**
+	* Validate the data is non negative integer or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isNonNegativeInteger = <span class="reserved">function</span>(n){
+		<span class="comment">//var regex = /^[1-9]\d*|0$/; error</span>
+		var regex = /^((\d+)|(0+))$/;
+		<span class="reserved">return</span> regex.test(n);
+	}
+
+	<span class="comment">/**
+	* Validate the data is integer in range or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@param</span> {int} min
+	* <span class="attrib">@param</span> {int} max
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isIntegerInRange = <span class="reserved">function</span>(n,Nmin,Nmax){
+		var num = Number(n);
+		<span class="reserved">if</span>(isNaN(num)){
+			<span class="reserved">return</span> false;
+		}
+		<span class="reserved">if</span>(num != Math.round(num)){
+			<span class="reserved">return</span> false;
+		}
+		<span class="reserved">return</span> (num &gt;= Nmin &amp;&amp; num &lt;= Nmax);
+	}
+
+	<span class="comment">/**
+	* Validate the data is number or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isNum = <span class="reserved">function</span>(number){
+		numRegExp = /^[0-9]+$/
+		<span class="reserved">return</span> numRegExp.test(number);
+	}
+
+	<span class="comment">/**
+	* Validate the data is email or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isEMailAddr = <span class="reserved">function</span>(string){
+		emailRegExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.([a-z]){2,4})$/
+		<span class="reserved">return</span> emailRegExp.test(string);
+	}
+
+	<span class="comment">/**
+	* Validate the data is zip code or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@parsm</span> {String} country
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isZipCode = <span class="reserved">function</span>(zipcode,country){
+		<span class="reserved">if</span>(!zipcode) <span class="reserved">return</span> false;
+		<span class="reserved">if</span>(!country) format = <span class="literal">'US'</span>;
+		switch(country){
+			case<span class="literal">'US'</span>: zpcRegExp = /^\d{5}$|^\d{5}-\d{4}$/; break;
+			case<span class="literal">'MA'</span>: zpcRegExp = /^\d{5}$/; break;
+			case<span class="literal">'CA'</span>: zpcRegExp = /^[A-Z]\d[A-Z] \d[A-Z]\d$/; break;
+			case<span class="literal">'DU'</span>: zpcRegExp = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/; break;
+			case<span class="literal">'FR'</span>: zpcRegExp = /^\d{5}$/; break;
+			case<span class="literal">'Monaco'</span>:zpcRegExp = /^(MC-)\d{5}$/; break;
+		}
+		<span class="reserved">return</span> zpcRegExp.test(zipcode);
+	}
+
+	<span class="comment">/**
+	* Validate the data is date or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@parsm</span> {String} format
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isDate = <span class="reserved">function</span>(date,format){
+		<span class="reserved">if</span>(!date) <span class="reserved">return</span> false;
+		<span class="reserved">if</span>(!format) format = <span class="literal">'FR'</span>;
+		
+		switch(format){
+			case<span class="literal">'FR'</span>: RegExpformat = /^(([0-2]\d|[3][0-1])\/([0]\d|[1][0-2])\/([2][0]|[1][9])\d{2})$/; break;
+			case<span class="literal">'US'</span>: RegExpformat = /^([2][0]|[1][9])\d{2}\-([0]\d|[1][0-2])\-([0-2]\d|[3][0-1])$/; break;
+			case<span class="literal">'SHORTFR'</span>: RegExpformat = /^([0-2]\d|[3][0-1])\/([0]\d|[1][0-2])\/\d{2}$/; break;
+			case<span class="literal">'SHORTUS'</span>: RegExpformat = /^\d{2}\-([0]\d|[1][0-2])\-([0-2]\d|[3][0-1])$/; break;
+			case<span class="literal">'dd MMM yyyy'</span>:RegExpformat = /^([0-2]\d|[3][0-1])\s(Jan(vier)?|Fév(rier)?|Mars|Avr(il)?|Mai|Juin|Juil(let)?|Aout|Sep(tembre)?|Oct(obre)?|Nov(ember)?|Dec(embre)?)\s([2][0]|[1][19])\d{2}$/; break;
+			case<span class="literal">'MMM dd, yyyy'</span>:RegExpformat = /^(J(anuary|u(ne|ly))|February|Ma(rch|y)|A(pril|ugust)|(((Sept|Nov|Dec)em)|Octo)ber)\s([0-2]\d|[3][0-1])\,\s([2][0]|[1][9])\d{2}$/; break;
+		}
+		
+		<span class="reserved">return</span> RegExpformat.test(date);
+	}
+
+	<span class="comment">/**
+	* Validate the data is date time or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isDateTime = <span class="reserved">function</span>(date){
+		<span class="comment">//TODO: validate the number of year and month</span>
+		var regex = /^(\d{4})\-(\d{2})\-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/;
+		<span class="reserved">return</span> regex.test(date);
+	}
+
+	<span class="comment">/**
+	* Validate the data is duration type or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isDuration = <span class="reserved">function</span>(n){
+		var regex = /^[-]?P(?!$)(?:\d+Y)?(?:\d+M)?(?:\d+D)?(?:T(?!$)(?:\d+H)?(?:\d+M)?(?:\d+(?:\.\d+)?S)?)?$/
+		<span class="reserved">return</span> regex.test(n);
+	}
+
+	<span class="comment">/**
+	* Validate the data is restrict duration type or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isRestrictDuration = <span class="reserved">function</span>(n){
+		var regex = /^[-]?PT(?!$)(?:\d+H)?(?:\d+M)?(?:\d+(?:\.\d+)?S)?$/;
+		<span class="reserved">return</span> regex.test(n);
+	}
+
+	<span class="comment">/**
+	* Validate the data is unsigned long or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isUnsignedLong = <span class="reserved">function</span>(num){
+		var maxValue = <span class="literal">"18446744073709551615"</span>;
+		var maxLength = maxValue.length;
+		var r = true;
+
+		<span class="reserved">if</span>(!<span class="reserved">this</span>.isNonNegativeInteger(num)){
+			r = false;
+		}<span class="reserved">else</span>{
+			<span class="reserved">if</span>(num.length &gt; maxLength){
+				r = false;
+			}<span class="reserved">else</span>{
+				<span class="reserved">if</span>(num.length == maxLength
+					&amp;&amp; (num.charAt(maxLength-1)&gt;5)){
+					r = false;
+				}
+			}
+		}
+
+		<span class="reserved">return</span> r;
+	}
+
+	<span class="comment">/**
+	* Validate the data is printable string or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@param</span> {int} min
+	* <span class="attrib">@param</span> {int} max
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isPrintableString = <span class="reserved">function</span>(_s , _min , _max){
+		<span class="reserved">if</span>(_s.length &lt; _min || _s.length &gt; _max){
+			<span class="reserved">return</span> false;
+		}
+		<span class="reserved">for</span> (var i = 0; i &lt; _s.length; i++) {
+			var ch = _s.charCodeAt(i);
+			<span class="reserved">if</span>(((ch &lt; 32 &amp;&amp; ch != 10 &amp;&amp; ch != 13 &amp;&amp; ch !=9 ) || ch &gt; 126)){
+				<span class="reserved">return</span> false;
+			}
+		}
+		<span class="reserved">return</span> true;
+	}
+
+	<span class="comment">/**
+	* Validate the data is MD5 or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isMD5 = <span class="reserved">function</span>(string){
+		<span class="reserved">if</span>(!string) <span class="reserved">return</span> false;
+		md5RegExp = /^[a-f0-9]{32}$/;
+		<span class="reserved">return</span> md5RegExp.test(string);
+	}
+
+	<span class="comment">/**
+	* Validate the data is URL or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isURL = <span class="reserved">function</span>(string){
+		<span class="reserved">if</span>(!string) <span class="reserved">return</span> false;
+		string = string.toLowerCase();
+		urlRegExp = /^\s*(((ht|f)tp(s?))\:\/\/)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?\s*$/
+		<span class="comment">//urlRegExp = /^(((file|gopher|news|nntp|telnet|http|ftp|https|ftps|sftp)\://)|(www\.))+(([a-zA-Z0-9\._-]+\.[a-zA-Z]{2,6})|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(/[a-zA-Z0-9\&amp;%_\./-~-]*)?/ </span>
+		<span class="reserved">return</span> urlRegExp.test(string);
+	}
+
+	<span class="comment">/**
+	* Validate the data is guid or not
+	* guid format : xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx or xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isGuid = <span class="reserved">function</span>(guid){
+		<span class="reserved">if</span>(!guid) <span class="reserved">return</span> false;
+		GuidRegExp = /^[{|\(]?[0-9a-fA-F]{8}[-]?([0-9a-fA-F]{4}[-]?){3}[0-9a-fA-F]{12}[\)|}]?$/
+		<span class="reserved">return</span> GuidRegExp.test(guid);
+	}
+
+	<span class="comment">/**
+	* Validate the data is ISBN or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@parsm</span> {String} format
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isISBN = <span class="reserved">function</span>(number){
+		<span class="reserved">if</span>(!number) <span class="reserved">return</span> false;
+		ISBNRegExp = /ISBN\x20(?=.{13}$)\d{1,5}([- ])\d{1,7}\1\d{1,6}\1(\d|X)$/
+		<span class="reserved">return</span> ISBNRegExp.test(number);
+	}
+
+	<span class="comment">/**
+	* Validate the data is SSN or not
+	* Social Security Number format : NNN-NN-NNNN
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isSSN = <span class="reserved">function</span>(number){
+		<span class="reserved">if</span>(!number) <span class="reserved">return</span> false;
+		ssnRegExp = /^\d{3}-\d{2}-\d{4}$/
+		<span class="reserved">return</span> ssnRegExp.test(number);
+	}
+
+	<span class="comment">/**
+	* Validate the data is decimal or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isDecimal = <span class="reserved">function</span>(number){
+		<span class="reserved">if</span>(!number) <span class="reserved">return</span> false;
+		decimalRegExp = /^-?(0|[1-9]{1}\d{0,})(\.(\d{1}\d{0,}))?$/
+		<span class="reserved">return</span> decimalRegExp.test(number);
+	}
+
+	<span class="comment">/**
+	* Validate the data is HEX or not
+	* <span class="attrib">@param</span> {Object} data
+	* <span class="attrib">@type</span> boolean
+	*/</span>
+	<span class="reserved">this</span>.isHex = <span class="reserved">function</span>(date){
+		var regex =/^([0-9a-fA-F])*$/;
+		<span class="reserved">return</span> regex.test(date);
+	}
+}
+
+var Validate = Class.create();</pre>
+	<hr>
+
+
+
+<!-- ========== START OF NAVBAR ========== -->
+<a name="navbar_top"><!-- --></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td colspan=2 bgcolor="#EEEEFF" class="NavBarCell1">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table border="0" cellpadding="0" cellspacing="3">
+  <tr align="center" valign="top">
+  
+  
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td bgcolor="#FFFFFF" class="NavBarCell1Rev">	&nbsp;<font class="NavBarFont1Rev"><b>File</b></font>&nbsp;</td>
+  
+
+  <td bgcolor="#FFFFFF" class="NavBarCell1"> <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="index-all.html"--><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td bgcolor="#EEEEFF" class="NavBarCell1">    <a href="help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</table>
+</td>
+<td bgcolor="#EEEEFF" align="right" valign="top"><em>
+<b></b></em>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td bgcolor="white" class="NavBarCell2"><font size="-2">
+  <a href="index.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="overview-summary.html" target="_top"><b>NO FRAMES</b></a>
+&nbsp;&nbsp;
+<script>
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="allclasses-noframe.html" TARGET=""><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+<a href="allclasses-noframe.html" target=""><b>All Classes</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<!-- =========== END OF NAVBAR =========== -->
+
+<hr>
+<font size="-1">
+
+</font>
+<div class="jsdoc_ctime">Documentation generated by <a href="http://jsdoc.sourceforge.net/" target="_parent">JSDoc</a> on Thu Nov  6 15:23:56 2008</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+==Rules==
+ * Every body should follow these rules by use Javascript:
+ * Do not use the original javascript method in the new project.
+ * Just only define the “special” Javascript file which is correlates closely to the business logic.
+ * Do not use the third part library directly in your project. Put it into the common library and share it with other members.
+ * Do not forgot the javascript is a dynamic language, keep your code clearly and simple, thanks!
+
+==Review Comments==
+ * *How to solve the i18n problem in javascript?*
+ The javascript should be independence with the particular implementation. And it also should be work fine without the jsp file. So, we should define the error message into the javascript file directly. And the problem will be transfer to how to transfer these message into the value which be define the properties file. It is really very simple. In the particular JSP file, it should include another JSP file which define all of the JS's parameters came from the properties file. These parameters will rewrite that one which has be defined in the JS file.
+
+ * *Define the name space in this library and support he sample.*
+ The "platform.widget" will be used as the default name space. For example, if you want to use the ajax.js file. You should use this syntax to post the XML data to service. platform.widget.ajax.setXmlFileByPost()
+
+ * *How to avoid the memory leak problem?*
+ There is no way if you create the circular reference created between a DOM node and a JS element. The JS library can NOT avoid it. it just only support a common way to create the JS element or get thte DOM node. Below is the words came from the IBM article which discuss this problem:
+
+ 'Memory leaks in JavaScript JavaScript is a garbage collected language, meaning that memory is allocated to objects upon their creation and reclaimed by the browser when there are no more references to them. While there is nothing wrong with JavaScript's garbage collection mechanism, it is at odds with the way some browsers handle the allocation and recovery of memory for DOM objects. Internet Explorer and Mozilla Firefox are two browsers that use reference counting to handle memory for DOM objects. In a reference counting system, each object referenced maintains a count of how many objects are referencing it. If the count becomes zero, the object is destroyed and the memory is returned to the heap. Although this solution is generally very efficient, it has a blind spot when it comes to circular (or cyclic) references.'
+ 
+ _*Reference*_
+  # Memory leak patterns in JavaScript
+  # Memory Leakage in Internet Explorer - revisited
+
+ * *The Ajax should support the synchronism and asynchronization.*
+ Done. I will add a new parameter("type") on each of the method.
+
+ * *Extend the browser.js and support the other function, for example to get the scroll bar width/height etc.*
+ Done. Now, support to get window width, window height, horizontal scroll bar position and vertical scroll bar position. And it has be included in common.js file.
+  
+ _*Reference*_
+  # http://www.softcomplex.com/docs/get_window_size_and_scrollbar_position.html
+
+ * *The elements.js should support more method to create the HTML element,for example to create/delete a dive/image element.*
+ The div/image element has be support in the new elements.js file. Other elements do not supported in the current package.
+
+ * *Add the decode method into stringutil.js*
+ The current implementation just only support to encode/decode URI.
+ There still has many problem should be discussed:
+  # Which coded format should be used if we want to support the function to encode/decode string?
+  # Where to be used in our projects?
